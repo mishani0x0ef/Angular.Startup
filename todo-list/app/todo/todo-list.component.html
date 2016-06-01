@@ -1,0 +1,29 @@
+<h2>Todo List Component</h2>
+
+<div class="container-fluid">
+
+    <button class="btn-primary" data-toggle="modal" data-target="#todoAdd">Add</button>
+    
+    <div *ngIf="todos && todos.length">
+        <div class="row" *ngFor="let todo of todos">
+            <div class="col-md-2">{{todo.todoId}}</div>
+            <div class="col-md-6" [style.textDecoration]="todo.done ? 'line-through' : 'none'">
+                {{todo.description}}
+            </div>
+            <div class="col-md-2">
+                <input type="checkbox" [(ngModel)]="todo.done">
+            </div>
+                <button class="btn" (click)="removeTodo(todo)">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            <div>
+        </div>
+
+        <div *ngIf="!(todos && todos.length)">
+            <h3>No todos found!</h3>
+        </div>
+
+    </div>
+</div>
+
+<todo-add></todo-add>
