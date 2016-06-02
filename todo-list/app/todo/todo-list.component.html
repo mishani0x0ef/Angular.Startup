@@ -1,29 +1,51 @@
-<h2>Todo List Component</h2>
+<h3 class="text-center text-primary">My Todo Tasks</h3>
 
-<div class="container-fluid">
+<div class="container-fluid well">
 
-    <button class="btn-primary" data-toggle="modal" data-target="#todoAdd">Add</button>
-    
-    <div *ngIf="todos && todos.length">
-        <div class="row" *ngFor="let todo of todos">
-            <div class="col-md-2">{{todo.todoId}}</div>
-            <div class="col-md-6" [style.textDecoration]="todo.done ? 'line-through' : 'none'">
-                {{todo.description}}
+    <div class="panel">
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <p>
+                        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#todoAdd">Add Task</button>
+                    </p>
+                </div>
             </div>
-            <div class="col-md-2">
-                <input type="checkbox" [(ngModel)]="todo.done">
+
+            <div *ngIf="todos && todos.length">
+                <div class="panel" *ngFor="let todo of todos">
+
+                    <div class="panel-body">
+                        <div>
+
+                            <div class="col-sm-2">{{todo.todoId}}</div>
+                            <div class="col-sm-6" [style.textDecoration]="todo.done ? 'line-through' : 'none'">
+                                {{todo.description}}
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="checkbox" [(ngModel)]="todo.done">
+                            </div>
+                            <button class="btn btn-link pull-right" (click)="removeTodo(todo)">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div>
+                    <strong>You have {{todos.length}} tasks.</strong>
+                </div>
             </div>
-                <button class="btn" (click)="removeTodo(todo)">
-                    <span class="glyphicon glyphicon-remove"></span>
-                </button>
-            <div>
-        </div>
 
-        <div *ngIf="!(todos && todos.length)">
-            <h3>No todos found!</h3>
-        </div>
+            <div *ngIf="!(todos && todos.length)">
+                <h3>No todos found!</h3>
+            </div>
 
+        </div>
     </div>
+
 </div>
 
 <todo-add></todo-add>
